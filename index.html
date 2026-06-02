@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primbon Jodoh Weton – Ramalan Kecocokan Pasangan Jawa</title>
+    <meta name="description" content="Hitung kecocokan jodoh berdasarkan weton dan neptu Primbon Jawa. Gratis, akurat, dan langsung keluar hasilnya.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background layers -->
+    <div class="bg-glow-top"></div>
+    <div class="bg-glow-bottom"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <h1 class="site-title">
+            <span class="emoji-title">💞</span>
+            Primbon Jodoh Weton
+        </h1>
+        <p class="site-tagline">Ungkap Takdir Cinta di Balik Weton &amp; Tanggal Lahirmu</p>
+        <p class="visitor-count">
+            <span class="counter" id="counterDisplay">13.042</span> pasangan sudah mengeceknya
+        </p>
+        <div class="header-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- ===== FORM SECTION ===== -->
+        <section id="formSection">
+
+            <div class="card form-card">
+                <div class="card-header">
+                    <span class="card-header-icon">🔮</span>
+                    <div>
+                        <h2>Masukkan Data Pasangan</h2>
+                        <p>Isi nama dan tanggal lahir untuk mengetahui kecocokan kalian</p>
+                    </div>
+                </div>
+
+                <div class="form-body">
+                    <div class="partner-grid">
+                        <!-- Pasangan 1 -->
+                        <div class="partner-block">
+                            <div class="partner-heading blue">
+                                <span>💙</span> Kamu (Pria)
+                            </div>
+                            <label class="field-label" for="nama1">Nama <span class="optional">(opsional)</span></label>
+                            <input type="text" id="nama1" class="field-input" placeholder="Masukkan namamu..." maxlength="40">
+                            <label class="field-label" for="tgl1">Tanggal Lahir <span class="required">*</span></label>
+                            <input type="date" id="tgl1" class="field-input">
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="partner-divider">
+                            <div class="divider-heart">❤️</div>
+                        </div>
+
+                        <!-- Pasangan 2 -->
+                        <div class="partner-block">
+                            <div class="partner-heading pink">
+                                <span>💗</span> Dia (Wanita)
+                            </div>
+                            <label class="field-label" for="nama2">Nama <span class="optional">(opsional)</span></label>
+                            <input type="text" id="nama2" class="field-input" placeholder="Masukkan namanya..." maxlength="40">
+                            <label class="field-label" for="tgl2">Tanggal Lahir <span class="required">*</span></label>
+                            <input type="date" id="tgl2" class="field-input">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" id="btnHitung" onclick="hitungKecocokan()">
+                        <span>✨</span> Hitung Kecocokan
+                    </button>
+                    <p class="form-note">Tanpa daftar · Tanpa biaya · Hasil keluar seketika</p>
+                </div>
+            </div>
+
+            <!-- How it works -->
+            <div class="steps-row">
+                <div class="step">
+                    <div class="step-icon">📅</div>
+                    <h3>Masukkan Tanggal</h3>
+                    <p>Tanggal lahir kamu &amp; pasangan</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">🔢</div>
+                    <h3>Hitung Neptu</h3>
+                    <p>Weton &amp; neptu dihitung otomatis</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">💫</div>
+                    <h3>Lihat Kecocokan</h3>
+                    <p>Hasil ramalan jodoh seketika</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== RESULTS SECTION ===== -->
+        <section id="resultsSection" class="hidden">
+
+            <!-- Result hero -->
+            <div class="card result-hero">
+                <div class="couple-row">
+                    <div class="avatar">
+                        <div class="avatar-circle blue-ring">👤</div>
+                        <span class="avatar-name" id="rNama1">Kamu</span>
+                    </div>
+                    <div class="heart-big">💞</div>
+                    <div class="avatar">
+                        <div class="avatar-circle pink-ring">👤</div>
+                        <span class="avatar-name" id="rNama2">Dia</span>
+                    </div>
+                </div>
+
+                <div class="result-badge-wrap" id="resultBadgeWrap">
+                    <div class="result-emoji" id="rEmoji">🌟</div>
+                    <h2 class="result-title" id="rNamaHasil">—</h2>
+                    <div class="star-row" id="rBintang">★★★★★</div>
+                    <span class="result-pill" id="rLabel">—</span>
+                    <p class="result-desc" id="rDesc">—</p>
+                </div>
+
+                <div class="neptu-total">
+                    Total Neptu: <strong id="rNeptuTotal">—</strong>
+                </div>
+            </div>
+
+            <!-- Weton cards -->
+            <div class="two-col">
+                <div class="card weton-card">
+                    <div class="weton-head blue">💙 <span id="rWetonNama1">Kamu</span></div>
+                    <div class="weton-name" id="rWeton1">—</div>
+                    <span class="neptu-tag" id="rNeptu1">Neptu —</span>
+                    <p class="weton-watak" id="rWatak1">—</p>
+                </div>
+                <div class="card weton-card">
+                    <div class="weton-head pink">💗 <span id="rWetonNama2">Dia</span></div>
+                    <div class="weton-name" id="rWeton2">—</div>
+                    <span class="neptu-tag" id="rNeptu2">Neptu —</span>
+                    <p class="weton-watak" id="rWatak2">—</p>
+                </div>
+            </div>
+
+            <!-- Petungan -->
+            <div class="card">
+                <h3 class="section-title">📊 Analisis Petungan</h3>
+                <div class="two-col">
+                    <div class="petungan-box">
+                        <div class="petungan-label">Petungan Pitu (Mod 7)</div>
+                        <div class="petungan-value" id="rPitu">—</div>
+                        <p class="petungan-desc" id="rPituDesc">—</p>
+                    </div>
+                    <div class="petungan-box">
+                        <div class="petungan-label">Petungan Wolu (Mod 8)</div>
+                        <div class="petungan-value" id="rWolu">—</div>
+                        <p class="petungan-desc" id="rWoluDesc">—</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Analysis -->
+            <div class="card ai-card">
+                <div class="ai-header">
+                    <span class="ai-orb">🔮</span>
+                    <div>
+                        <h3>Ramalan Cinta oleh Maestro Primbon AI</h3>
+                        <p>Analisis mendalam &amp; puitis berdasarkan data weton kalian</p>
+                    </div>
+                </div>
+                <div id="aiLoading" class="ai-loading">
+                    <div class="spinner"></div>
+                    <p>Maestro Primbon AI sedang membaca takdir cinta kalian…</p>
+                </div>
+                <div id="aiText" class="ai-text hidden"></div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="action-row">
+    <div class="share-container">
+  <!-- Tombol Utama -->
+  <button class="btn-share-main" onclick="toggleShareDropdown()">
+    📱 Bagikan Hasil
+  </button>
+  
+  <!-- Menu Dropdown -->
+  <div id="shareDropdown" class="share-dropdown-content">
+    <button onclick="shareTo('instagram')" class="copy-action">(Salin Teks)</button>
+    <button onclick="shareTo('whatsapp')">WhatsApp</button>
+    <button onclick="shareTo('threads')">Threads</button>     
+    <button onclick="shareTo('x')">𝕏 (Twitter)</button>  
+    <button onclick="shareTo('facebook')">Facebook</button>
+  </div>
+</div>
+                <button class="btn-secondary" onclick="hitungLagi()">🔄 Hitung Pasangan Lain</button>
+            </div>
+
+            <p class="disclaimer">Ramalan weton adalah warisan budaya Jawa untuk motivasi &amp; refleksi. Jodoh sejati tetap di tangan Tuhan. 🙏</p>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-logo">Primbon Jodoh Weton</div>
+        <p>Warisan budaya Jawa untuk motivasi &amp; refleksi</p>
+        <p class="footer-copy">© 2026 PrimbonJodohWeton</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
